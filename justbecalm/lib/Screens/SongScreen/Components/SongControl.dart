@@ -9,46 +9,52 @@ class SongControl extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Icon(Icons.repeat),
+          Icon(Icons.shuffle),
           Stack(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    height: 40,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            bottomLeft: Radius.circular(20))),
-                    child: Icon(Icons.chevron_left),
-                  ),
-                  Container(
-                    height: 40,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.blueAccent,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
-                    child: Icon(Icons.chevron_right),
-                  )
-                ],
+              Container(
+                height: 60,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      height: 40,
+                      width: 60,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20))),
+                      child: Icon(Icons.fast_rewind),
+                    ),
+                    Container(
+                      height: 40,
+                      width: 60,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomRight: Radius.circular(20))),
+                      child: Icon(Icons.fast_forward),
+                    )
+                  ],
+                ),
               ),
               Container(
                 height: 60,
                 width: 60,
                 decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    topLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                  )
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(30),
+                      topLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                      bottomLeft: Radius.circular(30),
+                    )),
+                child: Icon(
+                  Icons.play_arrow,
+                  size: 40,
+                  color: Colors.white,
                 ),
-                child: Icon(Icons.play_arrow, size: 40, color: Colors.white,),
               )
             ],
           ),

@@ -1,0 +1,1 @@
+class APP_COLORS {}

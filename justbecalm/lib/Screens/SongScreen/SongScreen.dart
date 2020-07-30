@@ -15,6 +15,7 @@ class _SongScreenState extends State<SongScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white70,
         body: Column(
           children: <Widget>[
             Row(
