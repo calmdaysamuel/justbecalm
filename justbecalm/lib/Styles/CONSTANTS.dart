@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CONSTANTS {
@@ -7,10 +8,10 @@ class CONSTANTS {
   static String featureScreenName = "Featured";
   static String searchScreenName = "Discover";
 
-  static Icon homeScreenIcon = Icon(Icons.ac_unit);
-  static Icon searchScreenIcon = Icon(Icons.ac_unit);
-  static Icon libraryScreenIcon = Icon(Icons.ac_unit);
-  static Icon featureScreenIcon = Icon(Icons.ac_unit);
+  static Icon homeScreenIcon = Icon(CupertinoIcons.home);
+  static Icon searchScreenIcon = Icon(CupertinoIcons.search);
+  static Icon libraryScreenIcon = Icon(CupertinoIcons.news);
+  static Icon featureScreenIcon = Icon(CupertinoIcons.collections);
   static Icon settingScreenIcon;
   static Icon playButtonIcon;
   static Icon pauseButtonIcon;

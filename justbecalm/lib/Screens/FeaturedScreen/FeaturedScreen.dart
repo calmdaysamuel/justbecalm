@@ -1,55 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:justbecalm/Service/API.dart';
+import 'package:justbecalm/Service/PROCESSING.dart';
+import 'package:spotify/spotify.dart';
+
+import 'Components/SongCard.dart';
 
 class FeaturedScreen extends StatefulWidget {
   @override
   _FeaturedScreenState createState() => _FeaturedScreenState();
 }
 
-class _FeaturedScreenState extends State<FeaturedScreen> with AutomaticKeepAliveClientMixin<FeaturedScreen> {
+class _FeaturedScreenState extends State<FeaturedScreen>
+    with AutomaticKeepAliveClientMixin<FeaturedScreen> {
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverAppBar(
-          title: Text("Sample Slivers"),
-          leading: Icon(Icons.menu),
-          backgroundColor: Colors.orangeAccent,
-          floating: true,
-          snap: true,
-          pinned: true,
-        ),
-        SliverList(delegate: SliverChildListDelegate(
-          [
-            ListTile(leading: Icon(Icons.volume_off), title: Text("Volume Off"),),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-          ]
-        )
-        )
-      ],
-      
-    );
+    super.build(context);
+    return FutureBuilder<Recommendations>(
+        future: API.getRecommendations_ArtistOnly(["5IH6FPUwQTxPSXurCrcIov"]),
+        builder:
+            (BuildContext context, AsyncSnapshot<Recommendations> snapshot) {
+          if (snapshot.hasData) {
+            print(snapshot.hasData);
+            return FutureBuilder<Iterable<Track>>(
+                future: PROCESSING.ifeaturePageSong(snapshot.data),
+                builder: (BuildContext context,
+                    AsyncSnapshot<Iterable<Track>> snapshot_1) {
+                  if (snapshot_1.hasData) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Colors.blueAccent, Colors.black],
+                          stops: [-0.15, 0.3],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter
+                        )
+                      ),
+                      child: ListView(
+                        children: PROCESSING.featurePageSong(snapshot_1.data),
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      color: Colors.blueAccent,
+                      child: Text("day"),
+                    );
+                  }
+                });
+          } else {
+            print(snapshot.hasData);
+            return Container(
+              color: Colors.greenAccent,
+              child: Text("day"),
+            );
+          }
+        });
   }
 
   @override

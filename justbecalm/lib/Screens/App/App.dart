@@ -1,4 +1,5 @@
 import 'package:flashy_tab_bar/flashy_tab_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:justbecalm/Screens/FeaturedScreen/FeaturedScreen.dart';
 import 'package:justbecalm/Screens/HomeScreen/HomeScreen.dart';
@@ -21,46 +22,38 @@ class _AppState extends State<App> {
   );
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: PageView(
-          controller: controller,
-          onPageChanged: (index) {
-            setState(() {
-              print(curScreen);
-              curScreen = index;
-            });
+    var tabs = [
+      HomeScreen(),
+      SearchScreen(),
+      FeaturedScreen(),
+      LibraryScreen()
+    ];
+    return CupertinoTabScaffold(
+      tabBuilder: (context, i) {
+        return CupertinoTabView(
+          builder: (context) {
+            return CupertinoPageScaffold(child: tabs[i]);
           },
-          children: <Widget>[
-            HomeScreen(),
-            SearchScreen(),
-            FeaturedScreen(),
-            LibraryScreen()
-          ],
-        ),
-        bottomNavigationBar: FlashyTabBar(
-            animationCurve: Curves.linear,
-            selectedIndex: curScreen,
-            showElevation: true,
-            onItemSelected: (index) => setState(() {
-              curScreen = index;
-              controller.animateToPage(curScreen, duration: Duration(milliseconds: 250), curve: Curves.linear);
-            }),
-            items: [
-              FlashyTabBarItem(
-                  icon: CONSTANTS.homeScreenIcon,
-                  title: Text(CONSTANTS.homeScreenName)),
-              FlashyTabBarItem(
-                  icon: CONSTANTS.searchScreenIcon,
-                  title: Text(CONSTANTS.searchScreenName)),
-              FlashyTabBarItem(
-                  icon: CONSTANTS.featureScreenIcon,
-                  title: Text(CONSTANTS.featureScreenName)),
-              FlashyTabBarItem(
-                  icon: CONSTANTS.libraryScreenIcon,
-                  title: Text(CONSTANTS.libraryScreenName))
-            ],
-
-        )
+        );
+      },
+      tabBar: CupertinoTabBar(
+        backgroundColor: Colors.black87,
+        activeColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+              icon: CONSTANTS.homeScreenIcon,
+              title: Text(CONSTANTS.homeScreenName)),
+          BottomNavigationBarItem(
+              icon: CONSTANTS.searchScreenIcon,
+              title: Text(CONSTANTS.searchScreenName)),
+          BottomNavigationBarItem(
+              icon: CONSTANTS.featureScreenIcon,
+              title: Text(CONSTANTS.featureScreenName)),
+          BottomNavigationBarItem(
+              icon: CONSTANTS.libraryScreenIcon,
+              title: Text(CONSTANTS.libraryScreenName))
+        ],
+      ),
     );
   }
 }
