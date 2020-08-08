@@ -9,7 +9,9 @@ class _HomeScreenState extends State<HomeScreen>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView(
+      children: <Widget>[],
+    );
   }
 
   @override

@@ -11,12 +11,15 @@ class PROCESSING {
       var CompleteTrack = track;
       print(CompleteTrack.name);
       tracks.add(SongCard(
-          imageUrl: CompleteTrack.album.images[0].url,
-          albumName: CompleteTrack.album.name,
-          songName: CompleteTrack.name,
-          artistName: CompleteTrack.artists[0].name,
-          albumId: CompleteTrack.album.id,
-          artistId: CompleteTrack.artists[0].id));
+        imageUrl: CompleteTrack.album.images[0].url,
+        albumName: CompleteTrack.album.name,
+        songName: CompleteTrack.name,
+        artistName: CompleteTrack.artists[0].name,
+        albumId: CompleteTrack.album.id,
+        artistId: CompleteTrack.artists[0].id,
+        albumUrl: CompleteTrack.album.href,
+        artistUrl: CompleteTrack.artists[0].href,
+      ));
     }
 
     return tracks;

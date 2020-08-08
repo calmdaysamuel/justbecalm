@@ -27,14 +27,7 @@ class _FeaturedScreenState extends State<FeaturedScreen>
                     AsyncSnapshot<Iterable<Track>> snapshot_1) {
                   if (snapshot_1.hasData) {
                     return Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [Colors.blueAccent, Colors.black],
-                          stops: [-0.15, 0.3],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter
-                        )
-                      ),
+                      decoration: BoxDecoration(),
                       child: ListView(
                         children: PROCESSING.featurePageSong(snapshot_1.data),
                       ),
